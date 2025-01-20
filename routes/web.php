@@ -33,8 +33,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     // Cart and Checkout Routes
     Route::get('cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('cart/{productId}', [CartController::class, 'add'])->name('cart.add');
-    Route::get('checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{productId}', [CartController::class, 'add'])->name('cart.add');
+Route::patch('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
     // Order Routes
     Route::post('/order', [OrderController::class, 'store'])->name('order.store');
